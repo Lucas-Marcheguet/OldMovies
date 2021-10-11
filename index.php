@@ -7,6 +7,11 @@
     <title>OldMovies</title>
 </head>
 <body>
-    
-<?php
+    <?php
+        include("movies.php");
+        include("requests.php");
+        print_movies(getMoviesByTitle());
+    ?>
 
+</body>
+</html>
