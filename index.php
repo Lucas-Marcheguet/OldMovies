@@ -10,8 +10,8 @@
     <?php
         include("movies.php");
         include("requests.php");
+
         print_movies(getMoviesByTitle());
     ?>
-
 </body>
 </html>
