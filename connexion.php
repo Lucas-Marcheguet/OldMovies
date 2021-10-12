@@ -20,8 +20,7 @@ function createBasicDB(){
     $connexion = connect_bd();
     $connexion->exec(
         "
-        Drop table Movies;
-        create table Movies (
+        create table if not exists Movies (
         Titre VARCHAR(50),
         Realisateur VARCHAR(50),
         Genre VARCHAR(50)
@@ -132,3 +131,5 @@ function createBasicDB(){
 
     return $connexion;
 }
+
+createBasicDB();
