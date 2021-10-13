@@ -1,0 +1,7 @@
+- Changer db (ajouter images, changer genres, 
+  peut-être prendre vrai db, ajouter users)
+- Tout faire en orienté objet
+- Faire fonctionner les forms (recherche, trie, connexion)
+- Utiliser des cookies
+- Améliorer le style
+- changer les commits 
