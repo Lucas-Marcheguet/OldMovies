@@ -1,4 +1,8 @@
-<?php include('php/head.php'); ?>
+<?php include('php/head.php'); 
+
+setcookie('connected', false, time() + 3600, '/')
+
+?>
 <form method="post">
         <label for="sort">Trier par :</label>
         <button>Titre</button>
