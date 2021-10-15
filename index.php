@@ -1,11 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php 
 include('php/head.php');
 
 setcookie('connected', 'false', time() + 3600, '/');
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
 <body>
     <?php 
         require('./php/header.php');
@@ -14,9 +14,15 @@ setcookie('connected', 'false', time() + 3600, '/');
     ?>
     <div class='display'>
         <?php
-            require('./php/filterBar.php');
+
+            require(dirname(__FILE__) . '/php/filterBar.php');
             $filterBar = new filterBar();
             $filterBar->printFilerBar();
+
+
+            require(dirname(__FILE__) .'\php\movies.php');
+            $moviesDisplay = new MoviesDisplay();
+            $moviesDisplay->printMovies();
         ?>
     </div>
 </body>

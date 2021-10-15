@@ -11,14 +11,14 @@ class Movie {
     private $director;
     private $genres;
 
-    function __construct($tire, $thumbUrl, $dateSortie, $language, $ratingScore ,$plot, $director, $genres){
+    function __construct($titre, $thumbUrl, $dateSortie, $language, $ratingScore ,$plot, $director, $genres){
         $this->titre      = $titre;
         $this->thumbUrl   = $thumbUrl;
         $this->dateSortie = $dateSortie;
         $this->language   = $language;
         $this->plot       = $plot;
         $this->director   = $director;
-        $this->genres     = $genres
+        $this->genres     = $genres;
     }
 
     function getlanguageUrl(){
@@ -50,11 +50,11 @@ class Movie {
                     <p class='plot-desc'>".$this->plot."</p>
                     <div class='handler'>
                         <h2 class='titre-desc'>".$this->titre."</p>
-                        <p class='director'>Réalisateur : ".$this->director"</p>
-                        <p class='director'>Note reçu : ".$this->ratingScore"</p>
-                        <p class='director'>Langue : ".$this->language"</p>
-                        <p class='director'>Date de sortie : ".$this->dateSortie"</p>
-                        <p class='director'>Genres : ".printGenres()"</p>
+                        <p class='director'>Réalisateur : ".$this->director."</p>
+                        <p class='director'>Note reçu : ".$this->ratingScore."</p>
+                        <p class='director'>Langue : ".$this->language."</p>
+                        <p class='director'>Date de sortie : ".$this->dateSortie."</p>
+                        <p class='director'>Genres : ".printGenres()."</p>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@ class Movie {
 
 
     function printGenres(){
-        $str = ''
+        $str = '';
         for($i=0; $i<sizeof($this->genres); $i++){
             if($i == sizeof($this->genres)-1){
                 $str .= $this->genres[i];
@@ -72,7 +72,7 @@ class Movie {
                 $str .= $this->genres[i] . ', ';
             }
         }
-        return $str
+        return $str;
     }
     
     
