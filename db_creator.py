@@ -41,6 +41,11 @@ def create_tables():
         FOREIGN KEY (firstName,lastName) REFERENCES Director(firstName,lastName),
         FOREIGN KEY (Title, thumbUrl) REFERENCES Movie(Title, thumbUrl)
     );""")
+    cursor.execute("""CREATE TABLE IF NOT EXISTS User (
+    username CHAR(20),
+    password CHAR(50),
+    role     INT(2)
+    );""")
 
 def get_genres(language):
     print("Ajout des genres")
@@ -94,12 +99,6 @@ def get_movies(language, pages, Nbyears):
 #create_tables()
 #get_genres('fr-FR')
 #get_movies("fr-FR", 20, 10)
-
-cursor.execute("""CREATE TABLE IF NOT EXISTS User (
-    username CHAR(20),
-    password CHAR(50),
-    role     INT(2)
-);""")
 
 connect.commit()
 connect.close()
