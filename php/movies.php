@@ -1,15 +1,26 @@
 <?php
-class MovieDisplay {
-    $movieList = array();
-    
 
-    function printMovieDislpay(){
+require('connexion.php');
+
+class MovieDisplay {
+    function __construct($movies){
+        $this->connexion = connectBD();
+        $this->movies = $movies;
+    }   
+
+    function printMovies(){
+        $str = '<div class="resultMovies">';
         if($_COOKIE['connected']){
-            $str = ''
+            foreach($this->movies as $movie){
+                $str .= $movie->printMovie();
+            }
         }
         else {
-
+            $str .= ("<p class='error-connection'>Erreur, vous n'êtes pas connecté</p>")
         }
+        $str .= '</div>'
+        $this->connexion->closeCursor();
+        return $str;
     }
 
 
