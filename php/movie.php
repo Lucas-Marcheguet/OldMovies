@@ -19,6 +19,7 @@ class Movie {
         $this->plot       = $plot;
         $this->director   = $director;
         $this->genres     = $genres;
+        $this->ratingScore= $ratingScore;
     }
 
     function printMovie(){
@@ -27,10 +28,7 @@ class Movie {
                 <div class='img'>
                     <img class ='movie-poster' src='". $this->thumbUrl ."' alt='". $this->titre ."'>
                     <img src='". $this->getlanguageUrl($this->language) ."' class='flag' alt='flag'>
-                    <div class='rating'>
-                        <p class='note'>".$this->ratingScore."</p>
-                        <img class='etoile' src='./static/img/etoile.png' alt='etoile'>
-                    </div>
+                    <div class='rating'><p class='note'>".$this->printRating()."</p></div>
                     <div class='hover-part'>
                         <p class='director'>". $this->getDirectors() ."</p>
                         <p class='plot'>". $this->getPartOfPlot() ."</p>
@@ -40,6 +38,10 @@ class Movie {
                 <p class='movie-title'>".$this->titre."</p>
             </div>
         ");
+    }
+
+    function printRating(){
+        return ($this->ratingScore != 0) ? number_format($this->ratingScore, 1):'n/n';
     }
 
     function printMovieDescription(){
@@ -65,16 +67,14 @@ class Movie {
 
     function getDirectors(){
         $str = '';
-        print_r($this->director);
         for($i=0;$i<sizeof($this->director);$i++){
             if($i == sizeof($this->director)-1){
-                $str .= $this->director[i];
+                $str .= $this->director[$i];
             }
             else {
-                $str .= $this->director[i] . ', ';
+                $str .= $this->director[$i] . ', ';
             }
         }
-        echo $str;
         return $str;
     }
 

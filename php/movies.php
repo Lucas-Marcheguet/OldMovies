@@ -1,10 +1,10 @@
 <?php
-require('movie.php');
+require(dirname(__FILE__) . '\movie.php');
+require(dirname(__FILE__) . '\errorHandler.php');
 class MoviesDisplay {
     private $movies = array();
-    function __construct(){
-        $this->request = new RequestsHandler;
-        $moviesReq = $this->request->getMoviesByTitleAsc(2);
+    function __construct($requestHandler){
+        $moviesReq = $requestHandler->handleRequest();
         foreach($moviesReq as $value){
             if(!($value[0][1] == 'none')){
                 array_push($this->movies, new Movie(
@@ -14,8 +14,9 @@ class MoviesDisplay {
                     $value[0][4], 
                     $value[0][3], 
                     $value[0][5],
-                    $value[0]['genres'],
-                    $value[0]['directors']));
+                    $value[0][7],
+                    $value[0][6]
+                ));
             }
         }
     }   
@@ -23,8 +24,13 @@ class MoviesDisplay {
     function printMovies(){
         $str = '<div class="resultMovies">';
         if($_COOKIE['connected']){
-            foreach($this->movies as $movie){
-                $str .= $movie->printMovie();
+            if(empty($this->movies)){
+                errorHandler::notFoundError();
+            }
+            else {
+                foreach($this->movies as $movie){
+                    $str .= $movie->printMovie();
+                }
             }
         }
         else {
@@ -37,12 +43,5 @@ class MoviesDisplay {
 
 
 }
-/*function print_movies($data){
-    $string;
-    foreach($data as $movie){
-        $string .= prepare_movie($movie["Titre"], $movie["Realisateur"],$movie["Genre"]);
-    }
-    return $string;
-}*/
 
 ?>

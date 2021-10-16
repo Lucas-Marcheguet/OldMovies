@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <?php 
 include('php/head.php');
-
-setcookie('connected', 'false', time() + 3600, '/');
-
+setcookie('connected', 'false', time()+3600, '/');
 ?>
 <body>
     <?php 
@@ -14,7 +12,6 @@ setcookie('connected', 'false', time() + 3600, '/');
     ?>
     <div class='display'>
         <?php
-
             require('php/filterBar.php');
             $filterBar = new filterBar();
             $filterBar->printFilerBar();
@@ -22,7 +19,8 @@ setcookie('connected', 'false', time() + 3600, '/');
         <div class="movies">
             <?php
                 require('php/movies.php');
-                $moviesDisplay = new MoviesDisplay();
+                $requestHandler = new RequestsHandler();
+                $moviesDisplay = new MoviesDisplay($requestHandler);
                 $moviesDisplay->printMovies();
             ?>
         </div>

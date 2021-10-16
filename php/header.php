@@ -9,7 +9,7 @@ class Header {
         if($_COOKIE['connected'] == 'false'){
             echo ("
             <div class='header'>
-                <p class='TitleLogo'>Old_Movies</p>
+                <a href='./index.php' class='TitleLogo'>Old_Movies</p>
     
                 <div class='log'>
                     <a href='login.php'>Se connecter</a>
@@ -24,7 +24,7 @@ class Header {
                 <p class='TitleLogo'>Old_Movies</p>
     
                 <div class='log'>
-                    <p class='username'>".getUsername()."</p>
+                    <p class='username'>".$this->getUsername()."</p>
                     <a href='logout.php'>Se deconnecter</a>
                 </div>
             </div>

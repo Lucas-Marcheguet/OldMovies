@@ -1,7 +1,8 @@
 .movies {
     display: grid;
-    grid-template-columns: repeat(5, 18%);
+    grid-template-columns: repeat(6, 15%);
     row-gap: 5px;
+    column-gap: 5px;
     height: 78vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -26,23 +27,34 @@
     height: 320px;
 }
 
-.rating > img {
-    width: 25px;
-    height: 25px;
+.rating {
+    margin: 5px;
+}
+
+.note {
     position: absolute;
     top: 0;
     right: 0;
+    border: 2px solid rgba(211, 190, 97, 0.6);
+    background-color: rgba(211, 190, 97, 0.9);;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 50%;
+    color: black;
 }
 
 .flag {
     position: absolute;
     top: 0;
     left: 0;
+    margin-left: 5px;
 }
 
 .hover-part {
+    position: absolute;
     color: white;
     display: none;
+    top: 0;
 }
 
 .movie-title {
@@ -50,39 +62,47 @@
     text-align: center;
 }
 
-.img:hover .movie-poster {
+.img:hover .movie-poster{
     z-index: 0;
     cursor: pointer;
     filter: brightness(25%);
-}
-
-.img:hover .flag {
-    display: none;
-}
-
-
-.img:hover .etoile {
-    display: none;
+    border: 1px solid rgba(90, 90, 90, 0.493);
+    border-radius: .2rem;
 }
 
 .img:hover .hover-part {
-    display: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 250px;
+    height: 320px;
 }
 
 .hover-part > .click {
     position: absolute;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    margin-bottom: 5px;
 }
 
 .hover-part > .director {
     position: absolute;
     top: 0;
-    color: red;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    width: 150px;
 }
 
 .hover-part > .plot {
     position: absolute;
-    width: 200px;
-    height: 100px;
-    top: 0;
+    left: 50%;
+    text-align: justify;
+    transform: translateX(-50%);
+    width: 210px;
 }

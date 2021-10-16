@@ -100,6 +100,15 @@ def get_movies(language, pages, Nbyears):
 #get_genres('fr-FR')
 #get_movies("fr-FR", 20, 10)
 
+cursor.execute("DROP TABLE User;")
+cursor.execute("""
+CREATE TABLE User(
+    id INT(5),
+    username CHAR(40),
+    password CHAR(64),
+    salt CHAR(64),
+    primary key (id, username)
+);""")
 connect.commit()
 connect.close()
 
