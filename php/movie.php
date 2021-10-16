@@ -21,18 +21,20 @@ class Movie {
         $this->genres     = $genres;
     }
 
-    function getlanguageUrl(){
-        return 'https://www.languageflags.io/'. $this->language .'/flat/64.png';
-    }
-
     function printMovie(){
         echo ("
             <div class='movie'>
                 <div class='img'>
                     <img class ='movie-poster' src='". $this->thumbUrl ."' alt='". $this->titre ."'>
+                    <img src='". $this->getlanguageUrl($this->language) ."' class='flag' alt='flag'>
                     <div class='rating'>
                         <p class='note'>".$this->ratingScore."</p>
-                        <img src='./static/img/etoile.png' alt='etoile'>
+                        <img class='etoile' src='./static/img/etoile.png' alt='etoile'>
+                    </div>
+                    <div class='hover-part'>
+                        <p class='director'>". $this->getDirectors() ."</p>
+                        <p class='plot'>". $this->getPartOfPlot() ."</p>
+                        <p class='click'>Cliquez pour en savoir plus</p>
                     </div>
                 </div>
                 <p class='movie-title'>".$this->titre."</p>
@@ -50,15 +52,34 @@ class Movie {
                     <p class='plot-desc'>".$this->plot."</p>
                     <div class='handler'>
                         <h2 class='titre-desc'>".$this->titre."</p>
-                        <p class='director'>Réalisateur : ".$this->director."</p>
-                        <p class='director'>Note reçu : ".$this->ratingScore."</p>
-                        <p class='director'>Langue : ".$this->language."</p>
-                        <p class='director'>Date de sortie : ".$this->dateSortie."</p>
-                        <p class='director'>Genres : ".printGenres()."</p>
+                        <p class='infos'>Réalisateur : ".$this->getDirectors()."</p>
+                        <p class='infos'>Note reçu : ".$this->ratingScore."</p>
+                        <p class='infos'>Langue : ".$this->language."</p>
+                        <p class='infos'>Date de sortie : ".$this->dateSortie."</p>
+                        <p class='infos'>Genres : ".printGenres()."</p>
                     </div>
                 </div>
             </div>
         ");
+    }
+
+    function getDirectors(){
+        $str = '';
+        print_r($this->director);
+        for($i=0;$i<sizeof($this->director);$i++){
+            if($i == sizeof($this->director)-1){
+                $str .= $this->director[i];
+            }
+            else {
+                $str .= $this->director[i] . ', ';
+            }
+        }
+        echo $str;
+        return $str;
+    }
+
+    function getPartOfPlot(){
+        return substr($this->plot, 0, 120) . '...';
     }
 
 
@@ -73,6 +94,13 @@ class Movie {
             }
         }
         return $str;
+    }
+
+    function getlanguageUrl(){
+        if($this->language == 'en') {
+            $this->language = 'gb';
+        }
+        return 'https://www.countryflags.io/'. $this->language .'/flat/32.png';
     }
     
     

@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__) . '\connect.php');
+require('php/connect.php');
 
 class RequestsHandler {
 
@@ -17,23 +17,33 @@ class RequestsHandler {
         order by title asc");
         $stmt->execute();
         $res = array();
+        $movCheck;
+        $currMov = array();
         foreach($stmt->fetchAll() as $result){
-            if(!array_key_exists($result[0], $res)){
-                array_push($res, array(
-                        $result[0],
-                        $result[1],
-                        $result[2],
-                        $result[3],
-                        $result[4],
-                        $result[5],
-                        "genres" => array($result[6]),
-                        "directors" => array($result[7] . ' ' . $result[8])));
+            if($movCheck[0] != $result[0]){
+
+                if(!empty($currMov)){
+                    array_push($res, $currMov);
+                }
+                $currMov = array();
+                array_push($currMov, 
+                array(
+                    $result[0],
+                    $result[1],
+                    $result[2],
+                    $result[3],
+                    $result[4],
+                    $result[5],
+                    "genres" => array($result[6]),
+                    "directors" => array($result[7] . ' ' . $result[8])));
             }
             else {
-                array_push($res[$result[0]][5], $result[6]);
-                array_push($res[$result[0]][6], $result[7] . ' ' . $result[8]);
+                    array_push($currMov['genres'], $result[6]);
+                    array_push($currMov['directors'], $result[7] . ' ' . $result[8]);
             }
+            $movCheck = $result;
         }
+
         return $res;
     }
 

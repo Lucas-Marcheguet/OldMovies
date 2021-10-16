@@ -6,18 +6,17 @@ class MoviesDisplay {
         $this->request = new RequestsHandler;
         $moviesReq = $this->request->getMoviesByTitleAsc(2);
         foreach($moviesReq as $value){
-            if($value[1] == 'none'){
-                $value[1] = "./static/img/poster_placeholder.jpg";
+            if(!($value[0][1] == 'none')){
+                array_push($this->movies, new Movie(
+                    $value[0][0], 
+                    $value[0][1],  
+                    $value[0][2], 
+                    $value[0][4], 
+                    $value[0][3], 
+                    $value[0][5],
+                    $value[0]['genres'],
+                    $value[0]['directors']));
             }
-            array_push($this->movies, new Movie(
-            $value[0], 
-            $value[1],  
-            $value[2], 
-            $value[3], 
-            $value[4], 
-            $value[5],
-            $value['genres'],
-            $value['directors']));
         }
     }   
 

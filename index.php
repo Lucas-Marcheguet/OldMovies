@@ -15,15 +15,18 @@ setcookie('connected', 'false', time() + 3600, '/');
     <div class='display'>
         <?php
 
-            require(dirname(__FILE__) . '/php/filterBar.php');
+            require('php/filterBar.php');
             $filterBar = new filterBar();
             $filterBar->printFilerBar();
-
-
-            require(dirname(__FILE__) .'\php\movies.php');
-            $moviesDisplay = new MoviesDisplay();
-            $moviesDisplay->printMovies();
         ?>
+        <div class="movies">
+            <?php
+                require('php/movies.php');
+                $moviesDisplay = new MoviesDisplay();
+                $moviesDisplay->printMovies();
+            ?>
+        </div>
+        
     </div>
 </body>
 </html>

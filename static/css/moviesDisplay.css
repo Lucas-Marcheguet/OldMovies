@@ -1,0 +1,88 @@
+.movies {
+    display: grid;
+    grid-template-columns: repeat(5, 18%);
+    row-gap: 5px;
+    height: 78vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    justify-content: center;
+    border: 1px solid rgb(180, 180, 180);
+}
+
+.movie {
+    margin-top: 5px;
+    width: 250px;
+    height: 350px;
+}
+
+.img {
+    width: 250px;
+    height: 320px;
+    position: relative;
+}
+
+.movie-poster {
+    width: 250px;
+    height: 320px;
+}
+
+.rating > img {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.hover-part {
+    color: white;
+    display: none;
+}
+
+.movie-title {
+    margin-top: 3px;
+    text-align: center;
+}
+
+.img:hover .movie-poster {
+    z-index: 0;
+    cursor: pointer;
+    filter: brightness(25%);
+}
+
+.img:hover .flag {
+    display: none;
+}
+
+
+.img:hover .etoile {
+    display: none;
+}
+
+.img:hover .hover-part {
+    display: inherit;
+}
+
+.hover-part > .click {
+    position: absolute;
+    bottom: 0;
+}
+
+.hover-part > .director {
+    position: absolute;
+    top: 0;
+    color: red;
+}
+
+.hover-part > .plot {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    top: 0;
+}

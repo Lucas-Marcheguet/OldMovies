@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__) .'\requestsHandler.php');
+require('php/requestsHandler.php');
 class filterBar {
     public $request;
     public $languageList;
