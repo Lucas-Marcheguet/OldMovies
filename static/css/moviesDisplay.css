@@ -49,6 +49,10 @@
     margin-left: 5px;
 }
 
+.delete .delete>img{
+    display: none;
+}
+
 .hover-part {
     position: absolute;
     color: white;

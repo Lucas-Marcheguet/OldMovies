@@ -6,18 +6,19 @@ class MoviesDisplay {
     function __construct($requestHandler){
         $moviesReq = $requestHandler->handleRequest();
         foreach($moviesReq as $value){
-            if(!($value[0][1] == 'none')){
-                array_push($this->movies, new Movie(
-                    $value[0][0], 
-                    $value[0][1],  
-                    $value[0][2], 
-                    $value[0][4], 
-                    $value[0][3], 
-                    $value[0][5],
-                    $value[0][7],
-                    $value[0][6]
-                ));
+            if(($value[0][1] == 'none')){
+                $value[0][1] = 'http://localhost/static/img/poster_placeholder.jpg';
             }
+            array_push($this->movies, new Movie(
+                $value[0][0], 
+                $value[0][1],  
+                $value[0][2], 
+                $value[0][4], 
+                $value[0][3], 
+                $value[0][5],
+                $value[0][7],
+                $value[0][6]
+            ));
         }
     }   
 

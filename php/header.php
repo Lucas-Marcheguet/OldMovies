@@ -27,6 +27,7 @@ class Header {
     
                 <div class='log'>
                     <p class='username'>".$this->getUsername()."</p>
+                    <a href='addMovie.php'>Ajouter un film</a>
                     <a href='logout.php'>Se deconnecter</a>
                 </div>
             </div>

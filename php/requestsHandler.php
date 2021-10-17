@@ -50,11 +50,16 @@ class RequestsHandler {
         $stmt = $this->connexion->prepare("select distinct language from Movie group by language");
         $stmt->execute();
         return $stmt->fetchAll();
-        $this->connexion->closeCursor();
     }
 
     public function getGenres(){
         $stmt = $this->connexion->prepare("select distinct Genre from Genre group by genre");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getGenresId(){
+        $stmt = $this->connexion->prepare("select distinct Id, Genre from Genre group by genre");
         $stmt->execute();
         return $stmt->fetchAll();
     }
