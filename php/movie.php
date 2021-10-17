@@ -1,3 +1,4 @@
+
 <?php
 
 class Movie {
@@ -22,9 +23,9 @@ class Movie {
         $this->ratingScore= $ratingScore;
     }
 
-    function printMovie(){
+    function printMovie($i){
         echo ("
-            <div class='movie'>
+            <div class='movie".$i."'>
                 <div class='img'>
                     <img class ='movie-poster' src='". $this->thumbUrl ."' alt='". $this->titre ."'>
                     <img src='". $this->getlanguageUrl($this->language) ."' class='flag' alt='flag'>
@@ -38,6 +39,8 @@ class Movie {
                 <p class='movie-title'>".$this->titre."</p>
             </div>
         ");
+
+
     }
 
     function printRating(){
@@ -46,6 +49,7 @@ class Movie {
 
     function printMovieDescription(){
         echo("
+        <div class='modal'>
             <div class='movie-desc'>
                 <img class='close' src='./static/img/close.png' alt='close'>
 
@@ -58,10 +62,14 @@ class Movie {
                         <p class='infos'>Note reçu : ".$this->ratingScore."</p>
                         <p class='infos'>Langue : ".$this->language."</p>
                         <p class='infos'>Date de sortie : ".$this->dateSortie."</p>
-                        <p class='infos'>Genres : ".printGenres()."</p>
+                        <p class='infos'>Genres : ".$this->printGenres()."</p>
                     </div>
                 </div>
             </div>
+        </div>
+        <script>    
+
+        </script>
         ");
     }
 
@@ -87,10 +95,10 @@ class Movie {
         $str = '';
         for($i=0; $i<sizeof($this->genres); $i++){
             if($i == sizeof($this->genres)-1){
-                $str .= $this->genres[i];
+                $str .= $this->genres[$i];
             }
             else {
-                $str .= $this->genres[i] . ', ';
+                $str .= $this->genres[$i] . ', ';
             }
         }
         return $str;

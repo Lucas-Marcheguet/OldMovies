@@ -3,7 +3,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Old_Movies</title>
-    <link rel="stylesheet" href="static/css/moviesDisplay.css">
-    <link rel="stylesheet" href="static/css/index.css">
-    <link rel="stylesheet" href="static/css/header.css">
+    <?php
+    require('addCssFiles.php');
+    ?>
+
+    <script src='static/js/jquery-3.6.0.min.js'></script>
 </head>

@@ -28,8 +28,10 @@ class MoviesDisplay {
                 $str .= errorHandler::notFoundError();
             }
             else {
+                $i = 0;
                 foreach($this->movies as $movie){
-                    $str .= $movie->printMovie();
+                    $str .= $movie->printMovie($i);
+                    $i+=1;
                 }
             }
         }
