@@ -31,10 +31,11 @@ class RequestParser{
         elseif($this->addTitleSort() || $this->addReleaseDateSort()) {
             $str .= ' order by ';
             if($this->addTitleSort() && !$this->addReleaseDateSort()){
-                $str .= " title ";
+                $str .= " title " . $_COOKIE['title-sort'];
             }
             if(!$this->addTitleSort() && $this->addReleaseDateSort()){
-                $str .= " releaseDate ";
+                echo $_COOKIE['date-sort'];
+                $str .= " releaseDate " . $_COOKIE['date-sort'];
             }
         }
         else {

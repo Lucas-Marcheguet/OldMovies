@@ -23,9 +23,9 @@ class Movie {
         $this->ratingScore= $ratingScore;
     }
 
-    function printMovie($i){
+    function printMovie(){
         echo ("
-            <div class='movie".$i."'>
+            <div class='movie'>
                 <div class='img'>
                     <img class ='movie-poster' src='". $this->thumbUrl ."' alt='". $this->titre ."'>
                     <img src='". $this->getlanguageUrl($this->language) ."' class='flag' alt='flag'>
@@ -36,7 +36,12 @@ class Movie {
                         <p class='click'>Cliquez pour en savoir plus</p>
                     </div>
                 </div>
-                <p class='movie-title'>".$this->titre."</p>
+                <div class='bottom-part'>
+                    <p class='movie-title'>".$this->titre."</p>
+                    <form action='' method='post'>
+                        <button class='delete' name='del ".$this->titre ."-". $this->thumbUrl ."'>Supprimer</button>
+                    </form>
+                </div>
             </div>
         ");
 

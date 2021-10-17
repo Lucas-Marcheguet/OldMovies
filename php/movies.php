@@ -7,7 +7,7 @@ class MoviesDisplay {
         $moviesReq = $requestHandler->handleRequest();
         foreach($moviesReq as $value){
             if(($value[0][1] == 'none')){
-                $value[0][1] = 'http://localhost/static/img/poster_placeholder.jpg';
+                $value[0][1] = 'static/img/poster_placeholder.jpg';
             }
             array_push($this->movies, new Movie(
                 $value[0][0], 
@@ -31,7 +31,7 @@ class MoviesDisplay {
             else {
                 $i = 0;
                 foreach($this->movies as $movie){
-                    $str .= $movie->printMovie($i);
+                    $str .= $movie->printMovie();
                     $i+=1;
                 }
             }
@@ -43,6 +43,30 @@ class MoviesDisplay {
         echo $str;
     }
 
+    function handleDelete(){
+        if(!empty($_POST)){
+            print_r($_POST);
+            foreach($_POST as $key => $value){
+                if(strpos($key, "del") !== false){
+                    $code = explode("_", $key);
+                    $values = explode("-", $code[1]);
+                    
+                    print_r($values);
+                    if($values[1] == 'static/img/poster'){
+                        $values[1] = 'none';
+                    }
+                    $connect = new ConnectToBD;
+                    $connexion = $connect->connexion;
+                    $stmt = $connexion->prepare('delete from Movie where title="'.$values[0].'" and thumbUrl="'.$values[1].'";');
+                    $stmt->execute();
+                    $stmt->closeCursor();
+                    echo 'fait';
+                    unset($_POST[$key]);
+                    header('Location: index.php');
+                }
+            }
+        }
+    }
 
 
 }

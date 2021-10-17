@@ -28,7 +28,7 @@
                 echo "<p class='success'>Félicitaiton ! vous êtes maintenant inscrit sur Old_Movies</p>";
                 echo "<p class='info'>Vous allez être redirigé dans 20 secondes vers la page d'acceuil</p>";
                 echo "<p class='info'>Vous n'aurez plus qu'a vous connecter pour consulter notre base de donnée</p>";
-                header( "refresh:5;url=./index.php" );
+                header( "refresh:20;url=./index.php" );
             }
         }
     }

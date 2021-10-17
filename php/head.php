@@ -6,6 +6,4 @@
     <?php
     require('addCssFiles.php');
     ?>
-
-    <script src='static/js/jquery-3.6.0.min.js'></script>
 </head>

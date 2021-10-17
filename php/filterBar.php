@@ -62,10 +62,20 @@ class filterBar {
             setcookie('genre', $_POST['genre'], time()+3600, '/');
         }
         if(isset($_POST['title-sort'])){
-            setcookie('title-sort', 'true', time()+3600, '/');
+            if(isset($_COOKIE['title-sort'])){
+                setcookie('title-sort', 'desc', time()+3600, '/');
+            }
+            else {
+                setcookie('title-sort', 'asc', time()+3600, '/');
+            }
         }
         if(isset($_POST['date-sort'])){
-            setcookie('date-sort', 'true', time()+3600, '/');
+            if(isset($_COOKIE['date-sort'])){
+                setcookie('date-sort', 'desc', time()+3600, '/');
+            }
+            else {
+                setcookie('date-sort', 'asc', time()+3600, '/');
+            }
         }
         if(isset($_POST['reset'])){
             setcookie('title', '', time()-3600, '/');

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php 
+ob_start();
 include('php/head.php');
 ?>
 <body>
@@ -21,6 +22,9 @@ include('php/head.php');
                 $requestHandler = new RequestsHandler();
                 $moviesDisplay = new MoviesDisplay($requestHandler);
                 $moviesDisplay->printMovies();
+                $moviesDisplay->handleDelete();
+
+                ob_end_flush();
             ?>
         </div>
         

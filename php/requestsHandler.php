@@ -4,20 +4,18 @@ require('php/requestParser.php');
 
 class RequestsHandler {
 
-    public function __construct(){
-        $connect = new ConnectToBD;
-        $this->connexion = $connect->connexion;
-    }
-
     function handleRequest(){
+        $connect = new ConnectToBD;
+        $connexion = $connect->connexion;
         $res = array();
         $request = new RequestParser();
-        $stmt = $this->connexion->prepare($request->parseFilters());
+        $stmt = $connexion->prepare($request->parseFilters());
         $stmt->execute();
         $movCheck = array("");
         $currMov = array();
-        foreach($stmt->fetchAll() as $result){
-            if($movCheck[0] != $result[0]){
+        $reqRes = $stmt->fetchAll();
+        foreach($reqRes as $result){
+            if($movCheck[0] != $result[0] || $movCheck[0] == $reqRes[sizeof($reqRes)-1][0]){
                 if(!empty($currMov)){
                     array_push($res, $currMov);
                 }
@@ -47,19 +45,25 @@ class RequestsHandler {
 
 
     public function getLanguages(){
-        $stmt = $this->connexion->prepare("select distinct language from Movie group by language");
+        $connect = new ConnectToBD;
+        $connexion = $connect->connexion;
+        $stmt = $connexion->prepare("select distinct language from Movie group by language");
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
     public function getGenres(){
-        $stmt = $this->connexion->prepare("select distinct Genre from Genre group by genre");
+        $connect = new ConnectToBD;
+        $connexion = $connect->connexion;
+        $stmt = $connexion->prepare("select distinct Genre from Genre group by genre");
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
     public function getGenresId(){
-        $stmt = $this->connexion->prepare("select distinct Id, Genre from Genre group by genre");
+        $connect = new ConnectToBD;
+        $connexion = $connect->connexion;
+        $stmt = $connexion->prepare("select distinct Id, Genre from Genre group by genre");
         $stmt->execute();
         return $stmt->fetchAll();
     }

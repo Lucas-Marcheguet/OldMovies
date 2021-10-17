@@ -1,6 +1,9 @@
 <?php
 include_once("php/requestsHandler.php");
+include_once("php/header.php");
 
+$header = new Header;
+$header->print_header();
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +15,9 @@ include_once("php/requestsHandler.php");
         <label for="thumb-url">Adresse de l'image</label>
         <input type="text" name="thumb-url" id="thumb-url">
         <label for="release-date">Date de sortie</label>
-        <input type="text" name="release-date" id="release-date" placeholder="YYYY-MM-DD">
+        <input type="date" name="release-date" id="release-date" placeholder="YYYY-MM-DD">
         <label for="rating">Note</label>
-        <input type="number" name="rating" id="rating" placeholder="(6.4, 4.2, 8.5)..." step='0.1'>
+        <input type="number" name="rating" id="rating" placeholder="(6.4, 4.2, 8.5)..." step="any" min="0">
         <label for="lang">Langage</label>
         <select name="lang" id="lang">
             <?php
@@ -75,31 +78,44 @@ function handleMovieAdd(){
     if($note == null){
         $note = 0;
     }
-    $stmt = $connexion->prepare("Insert into Movie values ('".$title."','".$link."','".$releaseDate. "','".$note. "','".$language."','".$plot."'); ");
-    $stmt->execute();
+    print_r($directors);
     foreach($directors as $director){
         $splited = explode(" ", $director);
+        print_r($director);
         if(!isset($splited[1])){
-            $stmt = $connexion->prepare("
-            Insert into PossessDirector values ('".$splited[0]."',' ','".$title."','".$link."');
-            Insert ignore into Director values ('".$splited[0]."', ' ');");
+            echo "oh";
+            $stmt = $connexion->prepare("Insert or replace into Movie values ('".$title."','".$link."','".$releaseDate. "','".$note. "','".$language."','".$plot."');");
+            $stmt2 = $connexion->prepare("Insert or replace into PossessDirector values ('".$splited[0]."',' ','".$title."','".$link."');");
+            $stmt3 = $connexion->prepare("Insert or replace into Director values ('".$splited[0]."', ' ');)");
             $stmt->execute();
+            $stmt2->execute();
+            $stmt3->execute();
+            $stmt->closeCursor();
+            $stmt2->closeCursor();
+            $stmt3->closeCursor();
         }
         else {
-            $stmt = $connexion->prepare("
-            Insert into PossessDirector values ('".$splited[0]."','".$splited[1]."','".$title."','".$link."');
-            Insert ignore into Director values ('".$splited[0]."','".$splited[1]."');
-            ");
+            $stmt = $connexion->prepare("Insert or replace into Movie values ('".$title."','".$link."','".$releaseDate. "','".$note. "','".$language."','".$plot."')"); 
+            $stmt2 = $connexion->prepare("Insert or replace into PossessDirector values ('".$splited[0]."','".$splited[1]."','".$title."','".$link."');");
+            $stmt3 = $connexion->prepare("Insert or replace into Director values ('".$splited[0]."', '".$splited[1]."');");
             $stmt->execute();
+            $stmt2->execute();
+            $stmt3->execute();
+            $stmt->closeCursor();
+            $stmt2->closeCursor();
+            $stmt3->closeCursor();
         }
 
     }
     foreach($listIds as $id){
 
-        $stmt = $connexion->prepare("
+        $stmt4 = $connexion->prepare("
         Insert into PossessGenre values ('".$id."','".$title."','".$link."');");
-        $stmt->execute();
+        $stmt4->execute();
+        $stmt4->closeCursor();
     }
+    echo "<p class='info'>Film ajouté avec succès</p>";
+    echo "<p class='info'>Vous allez être redirigé vers l'accueil dans 20 secondes</p>";
 }
 
 if(isset($_POST['add'])){
