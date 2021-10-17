@@ -2,7 +2,11 @@
 
 $files = array(
     'moviesDisplay', 
-    'index'
+    'index',
+    'header',
+    'signin',
+    'login',
+    'filterBar'
 );
 
 foreach($files as $file){

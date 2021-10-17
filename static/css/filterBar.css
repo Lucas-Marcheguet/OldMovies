@@ -1,0 +1,32 @@
+.filters {
+    display: flex;
+    align-items: center;
+    padding-bottom: 3em;
+    padding-top: 1em;
+    margin-left: 17.5em;
+
+}
+
+.filter-choices, .sorting, .buttons {
+    padding-left: 3em;
+}
+
+.search-btn{
+    margin-left: 0.5em;
+}
+
+.sorting-button, .search-btn, .reset-btn {
+    background-color: rgb(255,255,255);
+    border: none;
+    color: black;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-top-left-radius:25px;
+    border-top-right-radius:25px;
+    border-bottom-right-radius:25px;
+    border-bottom-left-radius:25px;
+
+}

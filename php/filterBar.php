@@ -20,29 +20,34 @@ class filterBar {
         echo ("
         <div class='filter-bar'>
             <form action='index.php' method='POST'>
-                <input name='title' type='text' class='search-bar' id='search-bar' placeholder='Rechercher un film ici...' maxlength='40'>
-                <input name='director' type='text' class='search-bar' id='search-bar-director' placeholder='Nom réalisateur...' maxlength='40'>
                 <div class='filters'>
+                    <div class='filter-text'>
+                        <input name='title' type='text' class='search-bar' id='search-bar' placeholder='Rechercher un film ici...' maxlength='40'>
+                        <input name='director' type='text' class='search-bar' id='search-bar-director' placeholder='Nom réalisateur...' maxlength='40'>
+                    </div>
+                    <div class ='filter-choices'>
                     <select name='language' id='language'>
                     <option value='' name='language'>Langue</option>
                         ".
                             $this->getLanguages($this->request->getLanguages())
                         ."
-                    </select>
-                    <select name='genre' id='genre'>
-                        <option value='' name='genres'>Genre</option>
-                        ".
-                            $this->getGenres($this->request->getGenres())
-                        ."
-                    </select>
+                        </select>
+                        <select name='genre' id='genre'>
+                            <option value='' name='genres'>Genre</option>
+                            ".
+                                $this->getGenres($this->request->getGenres())
+                            ."
+                        </select>
+                    </div>
+                    <div class='sorting'>
+                        <button type='submit' class='sorting-button' name='title-sort'>Titre</button>
+                        <button type='submit' class='sorting-button' name='date-sort'>Date de sortie</button>
+                    </div>
+                    <div class= 'buttons'>
+                        <button type='submit' name='search' class='search-btn'>Rechercher</button>
+                        <button type='submit' class='reset-btn' name='reset'>Réinitialiser</button>
+                    </div>
                 </div>
-                <div class='sorting'>
-                    <p class='sorting-text'>Trier par :</p>
-                    <button type='submit' class='sorting-button' name='title-sort'>Titre</button>
-                    <button type='submit' class='sorting-button' name='date-sort'>Date de sortie</button>
-                </div>
-                <button type='submit' name='search' class='search-btn'>Rechercher</button>
-                <button type='submit' class='reset-btn' name='reset'>Réinitialiser</button>
             </form>
         </div>
         ");

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
+    <link rel="stylesheet" href="static/css/signin.css">
+    <link rel="stylesheet" href="static/css/header.css">
 <body>
     <?php
         require('php/connect.php');

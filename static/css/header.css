@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+
+.header {
+    display : flex;
+}
+
+.TitleLogo {
+    color: white;
+    font-size: 4em;
+    flex-grow:1;
+    font-family: 'IM Fell English SC', serif;
+    padding: 0;
+    margin: 0.2em;
+    padding-top: 0.3em;
+}
+
+
+.username {
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.log {
+    text-decoration: none;
+    padding-right: 5px;
+    display: flex;
+    align-items : center;
+    height : 30px;
+    
+}
