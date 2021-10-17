@@ -4,7 +4,11 @@
     <?php
         require('php/connect.php');
         require('php/usersHandler.php');
-        require('php/header.php');
+        include_once('php/header.php');
+
+
+        $header = new Header;
+        $header->print_header();
     ?>
 
     <?php
@@ -21,6 +25,10 @@
             }
             else {
                 UsersHandler::addUserToDb($_SESSION['username'], $_SESSION['password']);
+                echo "<p class='success'>Félicitaiton ! vous êtes maintenant inscrit sur Old_Movies</p>";
+                echo "<p class='info'>Vous allez être redirigé dans 20 secondes vers la page d'acceuil</p>";
+                echo "<p class='info'>Vous n'aurez plus qu'a vous connecter pour consulter notre base de donnée</p>";
+                header( "refresh:5;url=./index.php" );
             }
         }
     }
@@ -33,9 +41,10 @@
     unset($_POST['username']);
     unset($_POST['password']);
     ?>
-
     <form action="" method='post'>
-        <input type="text", name='username'>
+        <label for="username">Nom d'utilisateur : </label>
+        <input type="text" name='username' id='username'>
+        <label for="password">Mot de passe</label>
         <input type="password" name="password" id="password">
         <button type="submit" name='signin'>S'inscrire</button>
     </form>

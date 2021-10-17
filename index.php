@@ -2,7 +2,6 @@
 <html lang="fr">
 <?php 
 include('php/head.php');
-setcookie('connected', 'false', time()+3600, '/');
 ?>
 <body>
     <?php 

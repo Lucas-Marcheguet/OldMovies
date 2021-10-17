@@ -2,8 +2,10 @@
 
 class UsersHandler{
 
-    static function encrypt($plain_text) {
-        $salt = uniqid(Rand(0, 1000000));
+    static function encrypt($plain_text, $salt) {
+        if(!$salt){
+            $salt = uniqid(Rand(0, 1000000));
+        }
         return array(
             'hash' => $salt.hash('sha256', $salt.$plain_text),
             'salt' => $salt
@@ -15,17 +17,19 @@ class UsersHandler{
         return hash('sha512', $random_string);
     }
 
-    static function findUserId($user, $password){
+    static function findUserId($username){
         $connect = new ConnectToBD;
         $connexion = $connect->connexion;
-        
-        $encrypted_pass = UsersHandler::encrypt($password);
-        $stmt = $connexion->prepare("SELECT id, username, password, salt from USER natiral join usertoken where username='". $_POST['username'] ."' and password='". $encrypted_pass['hash'] ."';");
+    
+        $stmt = $connexion->prepare("SELECT id, username, password, salt from USER where username='". $username ."';");
         $stmt->execute();
-        if($stmt->rowCount()==0){
-            return null;
+        $result = $stmt->fetchAll();
+        foreach($result as $user){
+            if($user['username'] == $username){
+                return array($user['id'], $user['password'], $user['salt']);
+            }
         }
-        return $stmt->fetchAll()[0];
+        return false;
     }
 
     static function userExists($username){
@@ -35,11 +39,13 @@ class UsersHandler{
         
         $stmt = $connexion->prepare("select username from USER where username='".$username."';");
         $stmt->execute();
-        print_r(empty($stmt->fetch()));
-        if(empty($stmt->fetch())){
-            return false;
+        $result = $stmt->fetchAll();
+        foreach($result as $user){
+            if($user['username'] == $username){
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     static function addUserToDb($username, $password){
@@ -49,7 +55,7 @@ class UsersHandler{
         $stmt->execute();
         $ids = $stmt->fetch();
         $id = $ids[0]+1;
-        $pass = UsersHandler::encrypt($password);
+        $pass = UsersHandler::encrypt($password, false);
         $stmt = $connexion->prepare("insert into User values ('". $id. "','" . $username ."', '". $pass['hash'] . "', '" . $pass['salt'] ."');");
         $stmt->execute();
     }

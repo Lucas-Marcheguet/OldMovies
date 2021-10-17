@@ -23,9 +23,9 @@ class MoviesDisplay {
 
     function printMovies(){
         $str = '<div class="resultMovies">';
-        if($_COOKIE['connected']){
+        if(isset($_COOKIE['connected'])){
             if(empty($this->movies)){
-                errorHandler::notFoundError();
+                $str .= errorHandler::notFoundError();
             }
             else {
                 foreach($this->movies as $movie){
@@ -34,10 +34,10 @@ class MoviesDisplay {
             }
         }
         else {
-            $str .= ("<p class='error-connection'>Erreur, vous n'êtes pas connecté</p>");
+            $str .= "<p class='error-connection'>Erreur, vous n'êtes pas connecté</p>";
         }
         $str .= '</div>';
-        return $str;
+        echo $str;
     }
 
 

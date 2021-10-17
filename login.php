@@ -12,8 +12,10 @@ $header = new Header;
 $header->print_header();
 ?>
     <form action="" method="post">
-        <input type="text" name='username'>
-        <input type="password" name='password'>
+    <label for="username">Nom d'utilisateur : </label>
+        <input type="text" name='username' id='username'>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password">
         <button type="submit" name='login'>Se connecter</button>
     </form>
 </body>
@@ -21,20 +23,38 @@ $header->print_header();
 
 
 <?php
-    function getUser(){
-        $id = UsersHandler::findUserId($_POST['username'], $_POST['password']);
-        if(!$id){
-            echo "<p class='error'>Rien n'a été trouvé</p>";
-        }
-        else {
-            $result = $stmt->fetch();
-            $random_string = uniqid(Rand(0, 1000000));
-            $session_key = hash('sha512', $random_string);
-            $stmt->prepare("INSERT into userToken values (?, ?, ?)", $result[0], $session_key, date('YYYY-MM-DD'));
+    function handleLogin(){
+        if(isset($_POST['username']) && isset($_POST['password'])){
+            session_start();
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['password'] = $_POST['password'];
+            $res = UsersHandler::findUserId( $_SESSION['username'],  $_SESSION['password']);
+            if(!$res){
+                echo "<p class='error'>Nom d'utilisateur ou mot de passe incorrect</p>";
+                $_SESSION['username']=null;
+                $_SESSION['password']=null;
+            }
+            else {
+                $hashed_pass = UsersHandler::encrypt( $_SESSION['password'], $res[2]);
+                if($hashed_pass['hash'] == $res[1]){
+                    setcookie('connected', 'true', time()+3600, '/');
+                    setcookie('username', $_SESSION['username'], time()+3600, '/');
+                    header('Location: ./index.php');
+                }
+                else {
+                    echo "<p class='error'>Nom d'utilisateur ou mot de passe incorrect</p>";
+                    $_SESSION['username']=null;
+                    $_SESSION['password']=null;
+                }
+        
+            }
         }
     }
 
     if(isset($_POST['login'])){
-        getUser();   
+        handleLogin();   
     }
+
+    unset($_POST['username']);
+    unset($_POST['password']);
 ?>

@@ -2,11 +2,13 @@
 class Header {
 
     function getUsername(){
-        return $_COOKIE['username'];
+        if(isset($_COOKIE['username'])){
+            return $_COOKIE['username'];
+        }
     }
 
     function print_header(){
-        if($_COOKIE['connected'] == 'false'){
+        if(!isset($_COOKIE['connected'])){
             echo ("
             <div class='header'>
                 <a href='./index.php' class='TitleLogo'>Old_Movies</p>
