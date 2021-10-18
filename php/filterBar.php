@@ -62,7 +62,7 @@ class filterBar {
             setcookie('genre', $_POST['genre'], time()+3600, '/');
         }
         if(isset($_POST['title-sort'])){
-            if(isset($_COOKIE['title-sort'])){
+            if($_COOKIE['title-sort'] == 'asc'){
                 setcookie('title-sort', 'desc', time()+3600, '/');
             }
             else {
@@ -70,7 +70,7 @@ class filterBar {
             }
         }
         if(isset($_POST['date-sort'])){
-            if(isset($_COOKIE['date-sort'])){
+            if($_COOKIE['date-sort'] == 'asc'){
                 setcookie('date-sort', 'desc', time()+3600, '/');
             }
             else {
@@ -84,6 +84,7 @@ class filterBar {
             setcookie('director', '', time()-3600, '/');
             setcookie('title-sort', '', time()-3600, '/');
             setcookie('date-sort', '', time()-3600, '/');
+            unset($_POST['reset']);
         }
     }
 

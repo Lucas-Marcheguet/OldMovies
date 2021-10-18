@@ -4,3 +4,15 @@ body {
     overflow-x: hidden;
     background-image: url("https://lafoliedespains.fr/wp-content/uploads/2021/09/old-black-background-grunge-texture-dark-wallpaper-blackboard-chalkboard-room-wall.jpg");
 }
+
+.error {
+    font-family: 'Noto Sans', sans-serif;
+    color:rgba(255, 0, 0, 1);
+    font-size: 2rem;
+}
+
+.success {
+    font-family: 'Noto Sans', sans-serif;
+    color:rgb(0, 175, 29);
+    font-size: 2rem;
+}

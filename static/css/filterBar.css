@@ -10,16 +10,18 @@
 
 .search-bar {
     width: 45vmin;
-    height: 3vmin;
+    height: 5vh;
     font-size: 1.2em;
     border: 1px solid rgb(63, 63, 63);
     padding-left: 1vw;
     border-radius: 50px;
     font-family: 'Noto Sans Mono', monospace;
+    
 }
 .select {
-    width: 10vmin;
-    height: 3vmin;
+    text-align: center;
+    width: 12vmin;
+    height: 5vh;
     border: 1px solid rgb(63, 63, 63);
     border-radius: 50px;
     margin: 3px;
@@ -27,8 +29,9 @@
 }
 
 .btn {
-    width: 15vmin;
-    height: 3vmin;
+    width: 18vmin;
+    height: 5vh;
+    line-height: 5vh;
     font-size: 1.2rem;
     background-color: #F3B700;
     border: none;
@@ -43,11 +46,15 @@
 }
 
 .title {
-    width: 7vmin;
+    width: 10vmin;
+    height: 5vh;
+    line-height: 5vh;
     font-family: 'Noto Sans', sans-serif;
 }
 
 .date {
-    width: 15vmin;
+    width: 25vmin;
+    height: 5vh;
+    line-height: 5vh;
     font-family: 'Noto Sans', sans-serif;
 }

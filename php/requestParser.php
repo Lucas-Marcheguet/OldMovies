@@ -34,7 +34,6 @@ class RequestParser{
                 $str .= " title " . $_COOKIE['title-sort'];
             }
             if(!$this->addTitleSort() && $this->addReleaseDateSort()){
-                echo $_COOKIE['date-sort'];
                 $str .= " releaseDate " . $_COOKIE['date-sort'];
             }
         }
@@ -42,7 +41,7 @@ class RequestParser{
             $str = "select distinct title, thumburl, releasedate, ratingscore, language, plot, genre, firstname, lastname
             from Movie natural join PossessGenre natural join PossessDirector natural join Director natural join Genre";
         }
-        $str .= ';';
+        $str .= ' Limit 50;';
         return $str;
     }
 

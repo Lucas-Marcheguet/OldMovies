@@ -154,9 +154,3 @@
 .delete:active {
     border: 1px solid black;
 }
-
-.error {
-    font-family: 'Noto Sans', sans-serif;
-    color:rgba(255, 0, 0, 1);
-    font-size: 2rem;
-}
