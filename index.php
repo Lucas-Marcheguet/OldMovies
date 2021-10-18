@@ -6,6 +6,7 @@ include('php/head.php');
 ?>
 <body>
     <?php 
+       
         require('./php/header.php');
         $header = new Header;
         $header->print_header();

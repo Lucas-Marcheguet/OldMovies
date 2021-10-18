@@ -109,7 +109,7 @@ def get_movies(language, pages, Nbyears):
 #    salt CHAR(64),
 #    primary key (id, username)
 #);""")
-cursor.execute("insert into Director values (?, ?)""", ("Lucas", "Marcheguet"))
+cursor.execute("delete from Movie where thumbUrl='none'");
 connect.commit()
 connect.close()
 

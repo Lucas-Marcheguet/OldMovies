@@ -37,7 +37,7 @@ class MoviesDisplay {
             }
         }
         else {
-            $str .= "<p class='error-connection'>Erreur, vous n'êtes pas connecté</p>";
+            $str .= "<p class='error'>Erreur, vous n'êtes pas connecté</p>";
         }
         $str .= '</div>';
         echo $str;
@@ -45,24 +45,22 @@ class MoviesDisplay {
 
     function handleDelete(){
         if(!empty($_POST)){
-            print_r($_POST);
             foreach($_POST as $key => $value){
                 if(strpos($key, "del") !== false){
-                    $code = explode("_", $key);
-                    $values = explode("-", $code[1]);
-                    
-                    print_r($values);
-                    if($values[1] == 'static/img/poster'){
-                        $values[1] = 'none';
+                    $code = substr($key, 3);
+                    $value = explode("////", $code);
+                    if($value[1] == 'static/img/poster' || $value[1] == 'static/img/poster_placeholder_jpg'){
+                        $value[1] = 'none';
                     }
+                    $value[1] = str_replace("_", ".", $value[1]);
+                    $value[0] = str_replace("_", " ", $value[0]);
                     $connect = new ConnectToBD;
                     $connexion = $connect->connexion;
-                    $stmt = $connexion->prepare('delete from Movie where title="'.$values[0].'" and thumbUrl="'.$values[1].'";');
+                    $stmt = $connexion->prepare('delete from Movie where title="'.$value[0].'" and thumbUrl="'.$value[1].'";');
                     $stmt->execute();
                     $stmt->closeCursor();
-                    echo 'fait';
                     unset($_POST[$key]);
-                    header('Location: index.php');
+                    header('refresh:1; url=./index.php');
                 }
             }
         }

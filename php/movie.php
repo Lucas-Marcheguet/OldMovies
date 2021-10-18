@@ -28,54 +28,23 @@ class Movie {
             <div class='movie'>
                 <div class='img'>
                     <img class ='movie-poster' src='". $this->thumbUrl ."' alt='". $this->titre ."'>
-                    <img src='". $this->getlanguageUrl($this->language) ."' class='flag' alt='flag'>
-                    <div class='rating'><p class='note'>".$this->printRating()."</p></div>
                     <div class='hover-part'>
+                        <img src='". $this->getlanguageUrl($this->language) ."' class='flag' alt='flag'>
+                        <div class='rating'><p class='note'>".$this->printRating()."</p></div>
                         <p class='director'>". $this->getDirectors() ."</p>
                         <p class='plot'>". $this->getPartOfPlot() ."</p>
-                        <p class='click'>Cliquez pour en savoir plus</p>
-                    </div>
-                </div>
-                <div class='bottom-part'>
-                    <p class='movie-title'>".$this->titre."</p>
-                    <form action='' method='post'>
-                        <button class='delete' name='del ".$this->titre ."-". $this->thumbUrl ."'>Supprimer</button>
+                        <form name='del' action='./' method='post'>
+                        <button class='delete' name='del".$this->titre ."////". $this->thumbUrl ."'>Supprimer</button>
                     </form>
+                    </div>
+                    <p class='movie-title'>".$this->titre."</p>
                 </div>
             </div>
         ");
-
-
     }
 
     function printRating(){
         return ($this->ratingScore != 0) ? number_format($this->ratingScore, 1):'n/n';
-    }
-
-    function printMovieDescription(){
-        echo("
-        <div class='modal'>
-            <div class='movie-desc'>
-                <img class='close' src='./static/img/close.png' alt='close'>
-
-                <div class='desc'>
-                    <img src='".$this->thumbUrl."' alt='".$this->titre."'>
-                    <p class='plot-desc'>".$this->plot."</p>
-                    <div class='handler'>
-                        <h2 class='titre-desc'>".$this->titre."</p>
-                        <p class='infos'>Réalisateur : ".$this->getDirectors()."</p>
-                        <p class='infos'>Note reçu : ".$this->ratingScore."</p>
-                        <p class='infos'>Langue : ".$this->language."</p>
-                        <p class='infos'>Date de sortie : ".$this->dateSortie."</p>
-                        <p class='infos'>Genres : ".$this->printGenres()."</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>    
-
-        </script>
-        ");
     }
 
     function getDirectors(){

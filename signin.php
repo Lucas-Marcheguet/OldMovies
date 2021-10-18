@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
+<link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/header.css">
 <body>
     <?php
         require('php/connect.php');

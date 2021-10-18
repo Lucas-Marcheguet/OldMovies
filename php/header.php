@@ -14,8 +14,8 @@ class Header {
                 <a href='./index.php' class='TitleLogo'>Old_Movies</a>
     
                 <div class='log'>
-                    <a href='login.php'>Se connecter</a>
-                    <a href='signin.php'>S'inscrire</a>
+                    <a href='login.php' class='header-btn'>Se connecter</a>
+                    <a href='signin.php' class='header-btn'>S'inscrire</a>
                 </div>
             </div>
             ");
@@ -27,8 +27,8 @@ class Header {
     
                 <div class='log'>
                     <p class='username'>".$this->getUsername()."</p>
-                    <a href='addMovie.php'>Ajouter un film</a>
-                    <a href='logout.php'>Se deconnecter</a>
+                    <a href='addMovie.php' class='header-btn'>Ajouter un film</a>
+                    <a href='logout.php' class='header-btn'>Se deconnecter</a>
                 </div>
             </div>
             ");
